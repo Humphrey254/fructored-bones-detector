@@ -1,7 +1,8 @@
-tensorflow 
-Streamlit 
-os
-numpy 
+streamlit
 gdown
+tensorflow-cpu==2.13.0
+pandas
+numpy
+
 
 
