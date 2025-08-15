@@ -1,15 +1,24 @@
 import os
-import keras
-from keras.models import load_model
-import streamlit as st 
 import tensorflow as tf
+from tensorflow.keras.models import load_model
+import streamlit as st
 import numpy as np
+import gdown  
+
+MODEL_PATH = "bone_fracture_model.h5"
+FILE_ID = "16FPtX-0RMlz06KGwOIwV1TEd8mmDbUuo" 
+URL = f"https://drive.google.com/file/d/16FPtX-0RMlz06KGwOIwV1TEd8mmDbUuo/view?usp=sharing"
+
+# Download the model if not available locally
+if not os.path.exists(MODEL_PATH):
+    with st.spinner("Downloading model from Google Drive..."):
+        gdown.download(URL, MODEL_PATH, quiet=False)
+
+
+model = load_model(MODEL_PATH)
 
 # App header
 st.header('Bone Fracture Classification (Fractured vs Normal)')
-
-# Load binary classification model
-model = load_model('bone_fracture_model.h5')
 
 # Define binary labels
 class_names = ['Fractured', 'Normal']
